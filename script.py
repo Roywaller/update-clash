@@ -20,7 +20,7 @@ def main():
         if content:
             with open('clash.yaml', 'w', encoding='utf-8') as file:
                 file.write(content)
-            print(url)
+            print("当前更新链接   " + url)
             break
         current_date -= timedelta(days=1)
 
