@@ -27,10 +27,9 @@ jobs:
       - name: Run Python script
         id: run-script
         run: |
-            python script.py
-            update_url=$(python -c 'import requests; from datetime import datetime, timedelta; current_date = datetime.now(); for _ in range(7): url = f"https://free.datiya.com/uploads/{{current_date.strftime('%Y%m%d') }}-clash.yaml"; try: response = requests.get(url); if response.status_code == 200 and response.text.strip(): print(url); break; except requests.RequestException: pass; current_date -= timedelta(days=1)')
-            echo "UPDATE_URL=$update_url" >> $GITHUB_OUTPUT
-            
+          UPDATE_URL=$(python script.py)
+          echo "UPDATE_URL=$UPDATE_URL" >> $GITHUB_OUTPUT
+
       - name: Commit and push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -53,3 +52,4 @@ jobs:
           git add README.md
           git commit -m "Update README.md"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/Roywaller/update-clash.git
+    
