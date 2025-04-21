@@ -20,7 +20,9 @@ def main():
         if content:
             with open('clash.yaml', 'w', encoding='utf-8') as file:
                 file.write(content)
-            print("当前更新链接   " + url)
+            # 将获取的链接保存到 README.md
+            with open('README.md', 'w', encoding='utf-8') as readme_file:
+            readme_file.write("当前更新链接   " + target_url + "\n")
             break
         current_date -= timedelta(days=1)
 
