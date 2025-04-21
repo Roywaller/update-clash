@@ -3,10 +3,6 @@ name: Update Clash YAML
 on:
   schedule:
     - cron: '0 */4 * * *'
-  workflow_dispatch:
-
-permissions:
-  contents: write
 
 jobs:
   update:
@@ -25,14 +21,9 @@ jobs:
         run: pip install requests
 
       - name: Run Python script
-        id: run-script
-        run: |
-          UPDATE_URL=$(python script.py)
-          echo "UPDATE_URL=$UPDATE_URL" >> $GITHUB_OUTPUT
+        run: python script.py
 
       - name: Commit and push changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -41,15 +32,6 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "Update clash.yaml"
-            git push https://x-access-token:${GITHUB_TOKEN}@github.com/Roywaller/update-clash.git
+            git push
           fi
-
-      - name: Update README.md
-        env:
-          UPDATE_URL: ${{ steps.run-script.outputs.UPDATE_URL }}
-        run: |
-          echo "当前更新链接 $UPDATE_URL" > README.md
-          git add README.md
-          git commit -m "Update README.md"
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/Roywaller/update-clash.git
     
