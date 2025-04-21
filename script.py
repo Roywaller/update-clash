@@ -22,7 +22,7 @@ def main():
                 file.write(content)
             # 将获取的链接保存到 README.md
             with open('README.md', 'w', encoding='utf-8') as readme_file:
-                readme_file.write("当前更新链接   " + target_url + "\n")
+                readme_file.write("当前更新链接   " + url + "\n")
             break
         current_date -= timedelta(days=1)
 
