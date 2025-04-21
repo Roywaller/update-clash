@@ -15,7 +15,7 @@ def get_content(date):
 
 def main():
     current_date = datetime.now()
-    for _ in range(7):
+    for _ in range(7):  # 最多尝试 7 天
         url, content = get_content(current_date)
         if content:
             with open('clash.yaml', 'w', encoding='utf-8') as file:
