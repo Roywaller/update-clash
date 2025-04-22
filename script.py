@@ -7,7 +7,7 @@ def get_content(date):
     try:
         response = requests.get(url)
         if response.status_code == 200 and response.text.strip():
-            return url, response.text
+            return url, response.text.replace("interval: 300", "interval: 30")
     except requests.RequestException:
         pass
     return None, None
