@@ -33,10 +33,10 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add clash.yaml
+          git add clash.yaml README.md
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Update clash.yaml"
+            git commit -m "Update clash.yaml and README.md"
             git push https://x-access-token:${GITHUB_TOKEN}@github.com/Roywaller/update-clash.git
           fi
