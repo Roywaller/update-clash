@@ -1,1 +1,1 @@
-当前更新链接   https://free.datiya.com/uploads/20250927-clash.yaml
+当前更新链接   https://free.datiya.com/uploads/20250928-clash.yaml
